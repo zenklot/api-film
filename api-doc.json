@@ -233,8 +233,26 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "OK"
+                    "201": {
+                        "description": "add new film success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Film"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
