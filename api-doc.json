@@ -1,0 +1,243 @@
+{
+    "openapi":"3.0.2",
+    "info": {
+      "title":"Film RESTful API",
+      "description":"API Spec for Film RESTful API",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"https://localhost:3000/api"}
+    ],
+    "components": {
+        "schemas": {
+            "Film": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "genre": {
+                        "type": "array",
+                        "items":{
+                            "type": "string"
+                        }
+                    },
+                    "rating": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "string"
+                    },
+                    "quality": {
+                        "type": "string"
+                    },
+                    "trailer": {
+                        "type": "string"
+                    },
+                    "watch": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateFilm": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "genre": {
+                        "type": "array",
+                        "items":{
+                            "type": "string"
+                        }
+                    },
+                    "rating": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "string"
+                    },
+                    "quality": {
+                        "type": "string"
+                    },
+                    "trailer": {
+                        "type": "string"
+                    },
+                    "watch": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/films": {
+            "get": {
+                "description": "List All Film With Pagination",
+                "summary": "List All Film With Pagination",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success get all film",
+                        "content": {
+                            "application/json" :{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Film"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/films/search/{title}": {
+            "get": {
+                "description": "Get Film by Title",
+                "summary": "Get Film by Title",
+                "parameters": [{
+                    "name": "title",
+                    "in": "path",
+                    "description": "Title Film",
+                    "schema":{
+                        "type": "string"
+                    },
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success get film",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Film"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/film/{filmId}": {
+            "get": {
+                "description": "Get film by id",
+                "summary": "Get film by id",
+                "parameters": [{
+                    "name": "filmId",
+                    "in": "path",
+                    "description": "Id Film",
+                    "schema":{
+                        "type": "string"
+                    },
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success get film",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Film"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary": "delete Film By ID",
+                "description": "delete Film By ID",
+                "parameters": [
+                    {
+                        "name": "filmId",
+                        "in": "path",
+                        "description": "Id Film",
+                        "schema":{
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete Film",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "number"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/film": {
+            "post": {
+                "description": "add new film",
+                "summary": "add neww film",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":  "#/components/schemas/CreateFilm"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+  }
