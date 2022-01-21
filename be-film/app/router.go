@@ -1,6 +1,10 @@
 package app
 
-import "github.com/julienschmidt/httprouter"
+import (
+	"github.com/julienschmidt/httprouter"
+	"github.com/zenklot/api-film/controller"
+	"github.com/zenklot/api-film/exception"
+)
 
 func NewRouter(filmController controller.FilmController) *httprouter.Router {
 	router := httprouter.New()
