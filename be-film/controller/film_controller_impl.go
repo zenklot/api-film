@@ -104,6 +104,8 @@ func (controller *FilmControllerImpl) Create(writer http.ResponseWriter, request
 	}
 	writer.Header().Add("Content-Type", "application/json")
 	writer.Header().Add("Access-Control-Allow-Origin", "*")
+	writer.Header().Add("Access-Control-Allow-Methods", "*")
+	writer.Header().Add("Accept", "application/json")
 	encoder := json.NewEncoder(writer)
 	err = encoder.Encode(webResponse)
 	if err != nil {
@@ -122,6 +124,8 @@ func (controller *FilmControllerImpl) Delete(writer http.ResponseWriter, request
 
 	writer.Header().Add("Content-Type", "application/json")
 	writer.Header().Add("Access-Control-Allow-Origin", "*")
+	writer.Header().Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	writer.Header().Add("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Auth-Token, Origin, Authorization")
 	encoder := json.NewEncoder(writer)
 	err := encoder.Encode(webResponse)
 	if err != nil {

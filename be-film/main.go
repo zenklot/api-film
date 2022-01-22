@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	scribble "github.com/nanobox-io/golang-scribble"
+	"github.com/rs/cors"
 	"github.com/zenklot/api-film/app"
 	"github.com/zenklot/api-film/controller"
 	"github.com/zenklot/api-film/database/seeder"
@@ -34,9 +35,10 @@ func main() {
 	router := app.NewRouter(filmController)
 
 	address := "localhost:3000"
+	handler := cors.Default().Handler(router)
 	server := http.Server{
 		Addr:    address,
-		Handler: router,
+		Handler: handler,
 	}
 	fmt.Printf("Server Started at %s\n", address)
 	err = server.ListenAndServe()

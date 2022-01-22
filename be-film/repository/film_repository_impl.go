@@ -82,7 +82,7 @@ func (repository *FilmRepositoryImpl) FindByTitle(db *scribble.Driver, page int,
 		if err := json.Unmarshal([]byte(dataFilm), &filmData); err != nil {
 			fmt.Println("Error", err)
 		}
-		if strings.Contains(filmData.Title, titleFilm) {
+		if strings.Contains(strings.ToLower(filmData.Title), strings.ToLower(titleFilm)) {
 			films = append(films, filmData)
 		}
 	}
