@@ -37,6 +37,7 @@ func (controller *FilmControllerImpl) FindAll(writer http.ResponseWriter, reques
 	}
 
 	writer.Header().Add("Content-Type", "application/json")
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	encoder := json.NewEncoder(writer)
 	err = encoder.Encode(webResponse)
 	if err != nil {
@@ -61,6 +62,7 @@ func (controller *FilmControllerImpl) FindByTitle(writer http.ResponseWriter, re
 	}
 
 	writer.Header().Add("Content-Type", "application/json")
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	encoder := json.NewEncoder(writer)
 	err = encoder.Encode(webResponse)
 	if err != nil {
@@ -78,6 +80,7 @@ func (controller *FilmControllerImpl) FindById(writer http.ResponseWriter, reque
 	}
 
 	writer.Header().Add("Content-Type", "application/json")
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	encoder := json.NewEncoder(writer)
 	err := encoder.Encode(webResponse)
 	if err != nil {
@@ -100,6 +103,7 @@ func (controller *FilmControllerImpl) Create(writer http.ResponseWriter, request
 		Data:   filmResponse,
 	}
 	writer.Header().Add("Content-Type", "application/json")
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	encoder := json.NewEncoder(writer)
 	err = encoder.Encode(webResponse)
 	if err != nil {
@@ -117,6 +121,7 @@ func (controller *FilmControllerImpl) Delete(writer http.ResponseWriter, request
 	}
 
 	writer.Header().Add("Content-Type", "application/json")
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	encoder := json.NewEncoder(writer)
 	err := encoder.Encode(webResponse)
 	if err != nil {
