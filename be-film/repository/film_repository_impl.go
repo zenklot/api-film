@@ -41,7 +41,7 @@ func (repository *FilmRepositoryImpl) FindAll(db *scribble.Driver, page int) ([]
 		panic(err)
 	}
 
-	perPage := 15
+	perPage := 12
 	totalPage := int(math.Ceil(float64(float64(len(records)) / float64(perPage))))
 
 	awal := (page - 1) * perPage
@@ -87,7 +87,7 @@ func (repository *FilmRepositoryImpl) FindByTitle(db *scribble.Driver, page int,
 		}
 	}
 
-	perPage := 15
+	perPage := 12
 	totalPage := int(math.Ceil(float64(float64(len(films)) / float64(perPage))))
 	awal := (page - 1) * perPage
 	akhir := page * perPage
