@@ -3,15 +3,27 @@ export const film = {
     state: () => ({
        films:[],
        totalPage:0,
-       currentPage:1
+       currentPage:1,
+       search:'',
     }),
 
     actions: {
-        loadFilms({commit}, page){
-            axios.get('/api/films?page='+page).then((response)=>{
+        loadFilms({commit, state}){
+            axios.get('/api/films?page='+state.currentPage).then((response)=>{
                 commit('setFilms', response.data.data)
                 commit('setTotalPage', response.data.total_page)
                 commit('setCurrentPage', response.data.current_page)
+            })
+        },
+        loadSearchFilms({commit, state}, search){
+            axios.get('/api/films/search/'+ search +'?page='+state.currentPage).then((response)=>{
+                commit('setFilms', response.data.data)
+                commit('setTotalPage', response.data.total_page)
+                if (state.currentPage > response.data.total_page) {
+                    commit('setCurrentPage', 1)
+                }else{
+                    commit('setCurrentPage', response.data.current_page)
+                }
             })
         },
         
@@ -26,6 +38,9 @@ export const film = {
         },
         setCurrentPage(state, data){
             state.currentPage = data
+        },
+        setSearch(state, data){
+            state.search = data
         }
     },
 
@@ -38,6 +53,9 @@ export const film = {
         },
         getCurrentPage( state ){
             return state.currentPage
+        },
+        getSearch(state){
+            return state.search
         }
     }
 }
