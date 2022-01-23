@@ -13,6 +13,8 @@ export const film = {
                 commit('setFilms', response.data.data)
                 commit('setTotalPage', response.data.total_page)
                 commit('setCurrentPage', response.data.current_page)
+            }).catch(()=>{
+                commit('setFilms', null)
             })
         },
         loadSearchFilms({commit, state}, search){
@@ -24,6 +26,8 @@ export const film = {
                 }else{
                     commit('setCurrentPage', response.data.current_page)
                 }
+            }).catch(()=>{
+                commit('setFilms', null)
             })
         },
         

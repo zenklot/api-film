@@ -9,7 +9,7 @@
   <div class="d-flex justify-content-end">
         <AddFilm />
   </div>
-  <div class="row justify-content-center row-cols-1 row-cols-md-5 row-col-sm-4 mb-4 mt-3" v-if="films.length > 0">
+  <div class="row justify-content-center row-cols-1 row-cols-md-5 row-col-sm-4 mb-4 mt-3" v-if="films">
         <CardFilm v-for="film in films" :key="film.id" :film="film" /> 
   </div>
   <div class="row" v-else>
@@ -64,7 +64,7 @@ methods:{
     nextPage(page){
         this.$store.commit('setCurrentPage', page)
         if (this.search != '') {
-            this.$store.dispatch('loadSearchFilms', this.search, page)
+            this.$store.dispatch('loadSearchFilms', this.search)
         }else{
             this.$store.dispatch('loadFilms')
         }

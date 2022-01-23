@@ -15,9 +15,11 @@ data(){
 methods:{
     searchFilm(){
         this.$store.commit('setSearch', this.search)
+        this.$store.commit('setCurrentPage',1)
         this.$store.dispatch('loadSearchFilms', this.search)        
     },
     loadFilm(){
+        this.$store.commit('setSearch', '')
         this.$store.commit('setCurrentPage',1)
         this.$store.dispatch('loadFilms')
     }
