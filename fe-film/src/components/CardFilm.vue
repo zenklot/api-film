@@ -81,6 +81,7 @@ export default {
         })
         .then((result) => {
           if (result.isConfirmed) {
+            let loader = this.$loading.show();
             this.axios
               .delete("/api/film/" + id)
               .then(() => {
@@ -89,7 +90,9 @@ export default {
               })
               .catch(() => {
                 this.showToast("error", "Error Delete Film");
-              });
+              }).finally(()=>{
+                 loader.hide();
+              })
           }
         });
     },

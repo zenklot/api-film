@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-
+import 'vue-loading-overlay/dist/vue-loading.css';
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -12,6 +12,7 @@ const store = createStore({
 	}
 });
 
+import VueLoading from 'vue-loading-overlay';
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -24,5 +25,5 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 
-createApp(App).use(store).use(router).use(VueAxios, axios).use(VueSweetalert2).use(BootstrapIconsPlugin).mount('#app')
+createApp(App).use(store).use(router).use(VueAxios, axios).use(VueSweetalert2).use(BootstrapIconsPlugin).use(VueLoading).mount('#app')
 import "bootstrap/dist/js/bootstrap.js";

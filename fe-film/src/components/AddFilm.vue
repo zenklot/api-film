@@ -98,12 +98,14 @@ export default {
           this.$swal.fire(title, message, icon);
         },
         addFilm(){
-             this.film.genre = this.genre.split(',')
-            
+            this.film.genre = this.genre.split(',')
+            let loader = this.$loading.show();
             this.axios.post('api/film', this.film).then(()=>{
                 this.showAlert('success', 'Tambah Film Baru Berhasil')
             }).catch(()=>{
                 this.showAlert('error','Gagal Tambah Data', 'Mohon Periksa Lagi Setiap Inputan')
+            }).finally(()=>{
+               loader.hide();
             })
         }
     }
